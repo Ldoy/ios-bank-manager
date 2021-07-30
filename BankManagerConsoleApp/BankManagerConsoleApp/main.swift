@@ -29,9 +29,10 @@ extension Bank {
         return waitingLine
     }
     
-    mutating func notifyClosing(totalCustomer: Int) {
-        let needTimeForTask = 0.7
-        let totalTime = Double(totalCustomer) * needTimeForTask
+    mutating func notifyClosing(totalCustomer: Int, 대출: Int, 예금: Int) {
+        let needTimeFor대출 = 0.7
+        let needTimeFor예금 = 1.1
+        let totalTime = Double(대출) * needTimeFor대출 +  Double(예금) * needTimeFor예금
         print("총 \(totalCustomer)입니다. 걸린 시간은 \(totalTime)")
     }
 }
@@ -57,54 +58,47 @@ struct Banker {
 }
 
 extension Banker {
-    mutating func startTask(watingLine: inout Queue<Int>) {
-        let customer = watingLine.peek()
-        print("\(String(describing: customer))번 고객 업무가 시작되었습니다.")
-        
+    func 업무(_ customer: Customer, _ waitingLine: inout Queue<Int>) {
+        print("\(customer.tagNumber)번 \(customer.task)업무 시작")
+        waitingLine.dequeue()
+        DispatchQueue.global().async {
+            print("\(customer.tagNumber)번 \(customer.task)업무 끝남")
+        }
     }
     
-    mutating func endTask(watingLine: inout Queue<Int>) {
-        let work = watingLine.dequeue()
-        print("\(String(describing: work))번 고객 업무가 끝났습니다.)")
-    }
-}
-
-
-func main3() {
-    // 고객의 태그와 헤드의 넘버가 값으면 고객의 테스크를 출려
-    // 고객의 테스크가 대출이면 특정 쓰레드?
- 
-    // 시작은 메인큐에서, 끝내는 건 async
-    var bank = Bank()
-    var total = bank.totalCustomerNumber
-    var a = bank.makingWaitingLine(from: total)
-
-    for i in 1...total {
-        let customer = Customer(tagNumber: i)
-        switch customer.task {
-        case "대출1":
-            print("\(customer.tagNumber) 대출업무 시작")
-            a.dequeue()
-            DispatchQueue.global().async {
-                print("\(customer.tagNumber)대출 업무끝남")
-            }
-        case "대출2":
-            print("\(customer.tagNumber)번 대출업무 시작")
-            a.dequeue()
-            DispatchQueue.global().async {
-                print("\(customer.tagNumber)대출 업무끝남")
-            }
-        default:
-            a.dequeue()
-            print("\(customer.tagNumber) 예금업무 시작")
-            DispatchQueue.global().async {
-                print("\(customer.tagNumber)예금 업무끝남")
+    func work(_ total: Int, _ banker: inout Banker, _ waitingLine: inout Queue<Int>, _ 대출: inout Int, _ 예금: inout Int) {
+        for i in 1...total {
+            let customer = Customer(tagNumber: i)
+            switch customer.task {
+            case "대출1":
+                업무(customer, &waitingLine)
+                대출 += 1
+            case "대출2":
+                업무(customer, &waitingLine)
+                대출 += 1
+            default:
+                업무(customer, &waitingLine)
+                예금 += 1
             }
         }
     }
     
-    bank.notifyClosing(totalCustomer: total)
-    
+}
+
+
+
+
+
+func main3() {
+    var bank = Bank()
+    let total = bank.totalCustomerNumber
+    var banker = Banker()
+    var waitingLine = bank.makingWaitingLine(from: total)
+    var 대출 = 0
+    var 예금 = 1
+    banker.work(total, &banker, &waitingLine, &대출, &예금)
+    sleep(2)
+    bank.notifyClosing(totalCustomer: total, 대출: 대출, 예금: 예금)
 }
 
 
