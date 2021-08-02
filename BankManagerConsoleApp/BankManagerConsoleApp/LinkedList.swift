@@ -8,15 +8,20 @@
 import Foundation
 
 class LinkedList<Value> {
+    //MARK: Properties
     private var head: Node<Value>?
     private var tail: Node<Value>?
-    
+}
+
+//MARK:- Node Manage Method
+extension LinkedList {
     func isEmpty() -> Bool {
         return head == nil
     }
     
+
     func append(_ value: Value) {
-        guard !isEmpty() && tail != nil else {
+        if isEmpty() {
             head = Node(value: value)
             tail = head
             return
@@ -26,9 +31,18 @@ class LinkedList<Value> {
         tail = tail?.next
     }
     
-    func remove(_ value: Value) -> Value? {
+
+    func remove() -> Value? {
         defer { head = head?.next }
-        
-        return head?.value ?? nil
+        return head?.value
+    }
+    
+    func removeAll() {
+        head = nil
+        tail = nil
+    }
+    
+    func glance() -> Value? {
+        return head?.value
     }
 }

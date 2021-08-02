@@ -5,3 +5,8 @@
 // 
 
 import Foundation
+
+let bankManager = BankManager()
+
+bankManager.printMenu()
+bankManager.decideBankOpen()
