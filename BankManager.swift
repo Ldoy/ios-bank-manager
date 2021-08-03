@@ -7,8 +7,6 @@
 import Foundation
 
 struct BankManager {
-    var bank = Bank()
-
 }
 
 extension BankManager {

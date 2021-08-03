@@ -12,8 +12,12 @@ func main() {
     var flag = true
     while flag == true {
         if bankManager.takeAnswer() == "1" {
-//            bankManager.
-//            bankManager.bank.open(totalCustomer: <#T##Int#>)
+            var bank = Bank()
+            let totalCustomer = Customer().totalCustomer
+            var waitingLine = bank.makeWaitingLine(totalCustomer)
+            bank.workResult(totalCustomer: totalCustomer, totalTime: timeCheck {
+                bank.open(totalCustomer: &waitingLine)
+            })
         } else {
             flag = false
         }
