@@ -7,6 +7,7 @@
 import Foundation
 
 struct BankManager {
+    var bank = Bank()
 }
 
 extension BankManager {
@@ -20,4 +21,20 @@ extension BankManager {
         let input = readLine()
         return input
     }
+    
+    mutating func letBankWork(_ customer: inout Queue<Int>) {
+        self.bank.open(totalCustomer: &customer)
+    }
+    
+    func checkWorkingTime(_ block: () -> ()) -> String {
+        let start = Date()
+        block()
+        let totalTime = Date().timeIntervalSince(start)
+        return totalTime.description
+    }
+    
+    func notify(_ total: Int?, _ time: String) {
+        bankManager.bank.notifyResult(totalCustomer: total, totalTime: time)
+    }
+
 }
