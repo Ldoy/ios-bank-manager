@@ -28,6 +28,10 @@ extension BankManager {
         return totalNumber
     }
     
+    mutating func formWaitingLine(from totalcustomer: Int) {
+        bank.makeWaitingLine(totalcustomer)
+    }
+    
     mutating func openBank() {
         self.bank.letClerkWork()
     }
@@ -41,9 +45,5 @@ extension BankManager {
     
     func showWorkResult(_ total: Int, _ time: String) {
         bankManager.bank.notifyResult(totalCustomer: total, totalTime: time)
-    }
-    
-    mutating func formWaitingLine(from totalcustomer: Int) {
-        return bank.makeWaitingLine(totalcustomer)
     }
 }

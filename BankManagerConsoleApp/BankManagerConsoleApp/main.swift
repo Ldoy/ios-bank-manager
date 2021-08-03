@@ -9,17 +9,26 @@ import Foundation
 var bankManager = BankManager()
 
 func main() {
+    enum BankMenu {
+        static let open = "1"
+        static let exit = "2"
+    }
+    
     var flag = true
     while flag == true {
-        if bankManager.takeAnswer() == "1" {
+        let answer = bankManager.takeAnswer()
+        switch answer {
+        case BankMenu.open:
             let totalCustomers = bankManager.gatherCustomers()
-            var waitingLine = bankManager.formWaitingLine(from: totalCustomers)
+            bankManager.formWaitingLine(from: totalCustomers)
             let workTime = bankManager.checkWorkingTime {
                 bankManager.openBank()
             }
             bankManager.showWorkResult(totalCustomers, workTime)
-        } else {
+        case BankMenu.exit:
             flag = false
+        default:
+            flag = true
         }
     }
 }
