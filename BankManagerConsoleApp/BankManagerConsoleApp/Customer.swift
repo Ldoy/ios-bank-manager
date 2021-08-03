@@ -8,6 +8,6 @@
 import Foundation
 
 struct Customer {
-    var identity: Node<Int>
+    var identity: Int
     var task: String
 }

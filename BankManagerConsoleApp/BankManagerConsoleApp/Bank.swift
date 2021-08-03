@@ -20,7 +20,7 @@ extension Bank {
         return waitingLine
     }
     
-    mutating func work(customerLine: inout Queue<Int>) {
+    mutating func letClerkWork(with customerLine: inout Queue<Int>) {
         while customerLine.isEmpty() == false {
             let currentCustomer = customerLine.peek()
             customerLine.dequeue()
