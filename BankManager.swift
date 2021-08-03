@@ -28,8 +28,8 @@ extension BankManager {
         return totalNumber
     }
     
-    mutating func openBank(_ customer: inout Queue<Int>) {
-        self.bank.letClerkWork(with: &customer)
+    mutating func openBank() {
+        self.bank.letClerkWork()
     }
     
     func checkWorkingTime(_ block: () -> ()) -> String {
@@ -43,7 +43,7 @@ extension BankManager {
         bankManager.bank.notifyResult(totalCustomer: total, totalTime: time)
     }
     
-    mutating func formWaitingLine(from totalcustomer: Int) -> Queue<Int>{
+    mutating func formWaitingLine(from totalcustomer: Int) {
         return bank.makeWaitingLine(totalcustomer)
     }
 }

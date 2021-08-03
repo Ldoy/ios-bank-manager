@@ -15,7 +15,7 @@ func main() {
             let totalCustomers = bankManager.gatherCustomers()
             var waitingLine = bankManager.formWaitingLine(from: totalCustomers)
             let workTime = bankManager.checkWorkingTime {
-                bankManager.openBank(&waitingLine)
+                bankManager.openBank()
             }
             bankManager.showWorkResult(totalCustomers, workTime)
         } else {
