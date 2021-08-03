@@ -13,7 +13,7 @@ func main() {
     while flag == true {
         if bankManager.takeAnswer() == "1" {
             let totalCustomer = Customer().totalCustomer
-            var waitingLine = bankManager.bank.makeWaitingLine(totalCustomer)
+            var waitingLine = bankManager.makeWatingLine(totalCustomer)
             let workTime = bankManager.checkWorkingTime {
                 bankManager.letBankWork(&waitingLine)
             }

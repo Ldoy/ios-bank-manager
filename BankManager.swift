@@ -7,7 +7,7 @@
 import Foundation
 
 struct BankManager {
-    var bank = Bank()
+    private var bank = Bank()
 }
 
 extension BankManager {
@@ -35,6 +35,10 @@ extension BankManager {
     
     func notify(_ total: Int?, _ time: String) {
         bankManager.bank.notifyResult(totalCustomer: total, totalTime: time)
+    }
+    
+    mutating func makeWatingLine(_ totalcustomer: Int) -> Queue<Int>{
+        return bank.makeWaitingLine(totalcustomer)
     }
 
 }
