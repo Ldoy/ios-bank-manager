@@ -89,11 +89,11 @@
 		C7694E78259C3EC00053667F /* BankManagerConsoleApp */ = {
 			isa = PBXGroup;
 			children = (
-				C7D65D1A259C8190005510E0 /* BankManager.swift */,
-				C7694E79259C3EC00053667F /* main.swift */,
 				A877AA9B26AFF6A500A77397 /* Node.swift */,
 				A877AA9D26AFFF3000A77397 /* LinkedList.swift */,
 				DF133A5826B00ACB009FED1B /* Queue.swift */,
+				C7694E79259C3EC00053667F /* main.swift */,
+				C7D65D1A259C8190005510E0 /* BankManager.swift */,
 				DFA9DCEB26B8B15E00F91CFD /* Bank.swift */,
 				DFA9DCED26B8B1F600F91CFD /* BankClerk.swift */,
 				DFA9DCEF26B8B21B00F91CFD /* Customer.swift */,

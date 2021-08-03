@@ -8,6 +8,6 @@ import Foundation
 
 let bankManager = BankManager()
 
-//bankManager.printMenu()
-//bankManager.decideBankOpen()
-bankManager.start()
+while true {
+    bankManager.start()
+}

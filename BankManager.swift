@@ -8,19 +8,15 @@ import Foundation
 
 enum MenuSelectionError: Error, LocalizedError {
     case wrongInput
-    case emptyInput
     
     var errorDescription: String? {
         switch self {
         case .wrongInput:
             return "잘못된 입력입니다."
-        case .emptyInput:
-            return "입력값이 없습니다."
         }
     }
 }
 
-// readline, print해주는 애
 struct BankManager {
     enum BankOpenMenu {
         static let open = 1
@@ -28,14 +24,15 @@ struct BankManager {
     }
     
     let bank = Bank()
-    
+}
+
+extension BankManager {
     func start() {
         printMenu()
         do {
             try decideBankOpen()
         } catch {
-            print("잘못된 입력입니다.")
-            printMenu()
+            print(error.localizedDescription)
         }
     }
     
@@ -46,18 +43,9 @@ struct BankManager {
     }
     
     func decideBankOpen() throws {
-        guard let readLine = readLine(), let menuSelection = Int(readLine) else {
+        guard let input = readLine(), let menuSelection = Int(input) else {
             return
         }
-        
-        //        if menuSelection == bankOpenMenu.open {
-        //            bank.open()
-        //            bank.close()
-        //        } else if menuSelection == bankOpenMenu.exit {
-        //            return
-        //        }
-        // 에러처리?
-        // switch문이 낫나?
         
         switch menuSelection {
         case BankOpenMenu.open:
@@ -66,7 +54,7 @@ struct BankManager {
         case BankOpenMenu.exit:
             return
         default:
-            MenuSelectionError.wrongInput
+            throw MenuSelectionError.wrongInput
         }
     }
 }

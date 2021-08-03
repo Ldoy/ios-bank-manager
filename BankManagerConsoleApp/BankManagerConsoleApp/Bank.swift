@@ -11,14 +11,14 @@ struct Bank {
     let bankClerk = BankClerk()
     let customer = Customer()
     let customerQueue = Queue<Int>()
-    
+}
+
+extension Bank {
     func open() {
         customer.goToBank(of: customerQueue)
-        // open 메소드 안에 들어가야하는가? 콘솔앱에서 실행해야하는가?
         bankClerk.handleTask(of: customerQueue, customer.customerNumber)
     }
     
-    // 업무 처리 고객과 업무시간을 매개변수로 받아 console에서 결정할 것이냐, Bank가 알고있도록 Bank의 프로퍼티로 만들 것이냐
     func close() {
         if customerQueue.isEmpty() {
 //            let taskTime = calculateTaskTime()
