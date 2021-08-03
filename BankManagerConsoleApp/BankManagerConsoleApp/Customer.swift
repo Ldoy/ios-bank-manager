@@ -8,15 +8,6 @@
 import Foundation
 
 struct Customer {
-    var totalCustomer: Int
-    
-    init() {
-        let range = (10...30)
-        let totalCustomer = Int.random(in: range)
-        self.totalCustomer = totalCustomer
-    }
-    
-    init(totalCustomer: Int) {
-        self.totalCustomer = totalCustomer
-    }
+    var identity: Node<Int>
+    var task: String
 }

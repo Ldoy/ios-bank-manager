@@ -22,8 +22,14 @@ extension BankManager {
         return input
     }
     
+    func gatherCustomers() -> Int {
+        let range = (10...30)
+        let totalNumber = Int.random(in: range)
+        return totalNumber
+    }
+    
     mutating func openBank(_ customer: inout Queue<Int>) {
-        self.bank.work(totalCustomer: &customer)
+        self.bank.work(customerLine: &customer)
     }
     
     func checkWorkingTime(_ block: () -> ()) -> String {
@@ -37,8 +43,8 @@ extension BankManager {
         bankManager.bank.notifyResult(totalCustomer: total, totalTime: time)
     }
     
-    mutating func formWaitingLine(from totalcustomer: Int) -> Queue<Int>{
+    mutating func makeWaitingLine(from totalcustomer: Int) -> Queue<Int>{
         return bank.makeWaitingLine(totalcustomer)
     }
-
+    
 }

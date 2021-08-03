@@ -12,12 +12,13 @@ func main() {
     var flag = true
     while flag == true {
         if bankManager.takeAnswer() == "1" {
-            let totalCustomer = Customer().totalCustomer
-            var waitingLine = bankManager.formWaitingLine(from: totalCustomer)
+//            let totalCustomer = Customer().totalCustomer
+            let totalCustomers = bankManager.gatherCustomers()
+            var waitingLine = bankManager.makeWaitingLine(from: totalCustomers)
             let workTime = bankManager.checkWorkingTime {
                 bankManager.openBank(&waitingLine)
             }
-            bankManager.showWorkResult(totalCustomer, workTime)
+            bankManager.showWorkResult(totalCustomers, workTime)
         } else {
             flag = false
         }
