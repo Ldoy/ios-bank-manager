@@ -57,12 +57,12 @@ struct Banker {
     var capacityCustomerNumber: Int = 1
 }
 
-extension Banker {
-    func 업무(_ customer: Customer, _ waitingLine: inout Queue<Int>) {
-        print("\(customer.tagNumber)번 \(customer.task)업무 시작")
-        waitingLine.dequeue()
+extension Banker {: inout Queue<Int>) {
         DispatchQueue.global().async {
-            print("\(customer.tagNumber)번 \(customer.task)업무 끝남")
+        print("\(customer.tagNumber)번 \(customer.task)업무 시작") // start, dequeue()
+        waitingLine.dequeue()
+        
+            print("\(customer.tagNumber)번 \(customer.task)업무 끝남") // finish - completion handler -> 처리고객수 += 1
         }
     }
     
