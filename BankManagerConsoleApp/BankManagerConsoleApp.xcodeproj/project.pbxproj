@@ -18,6 +18,9 @@
 		DF133A7726B12EE1009FED1B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7694E79259C3EC00053667F /* main.swift */; };
 		DF133A7826B12EE1009FED1B /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877AA9B26AFF6A500A77397 /* Node.swift */; };
 		DF133A7926B12EE1009FED1B /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A877AA9D26AFFF3000A77397 /* LinkedList.swift */; };
+		DFA9DCEC26B8B15E00F91CFD /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9DCEB26B8B15E00F91CFD /* Bank.swift */; };
+		DFA9DCEE26B8B1F600F91CFD /* BankClerk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9DCED26B8B1F600F91CFD /* BankClerk.swift */; };
+		DFA9DCF026B8B21B00F91CFD /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA9DCEF26B8B21B00F91CFD /* Customer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +45,9 @@
 		DF133A6E26B12B29009FED1B /* QueueMethodTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QueueMethodTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF133A7026B12B29009FED1B /* QueueMethodTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueMethodTest.swift; sourceTree = "<group>"; };
 		DF133A7226B12B29009FED1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFA9DCEB26B8B15E00F91CFD /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		DFA9DCED26B8B1F600F91CFD /* BankClerk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankClerk.swift; sourceTree = "<group>"; };
+		DFA9DCEF26B8B21B00F91CFD /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,9 @@
 				A877AA9B26AFF6A500A77397 /* Node.swift */,
 				A877AA9D26AFFF3000A77397 /* LinkedList.swift */,
 				DF133A5826B00ACB009FED1B /* Queue.swift */,
+				DFA9DCEB26B8B15E00F91CFD /* Bank.swift */,
+				DFA9DCED26B8B1F600F91CFD /* BankClerk.swift */,
+				DFA9DCEF26B8B21B00F91CFD /* Customer.swift */,
 			);
 			path = BankManagerConsoleApp;
 			sourceTree = "<group>";
@@ -190,8 +199,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF133A5926B00ACB009FED1B /* Queue.swift in Sources */,
+				DFA9DCEE26B8B1F600F91CFD /* BankClerk.swift in Sources */,
 				A877AA9C26AFF6A500A77397 /* Node.swift in Sources */,
+				DFA9DCF026B8B21B00F91CFD /* Customer.swift in Sources */,
 				C7694E7A259C3EC00053667F /* main.swift in Sources */,
+				DFA9DCEC26B8B15E00F91CFD /* Bank.swift in Sources */,
 				A877AA9E26AFFF3000A77397 /* LinkedList.swift in Sources */,
 				C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */,
 			);
