@@ -8,7 +8,7 @@
 import Foundation
 
 struct Bank {
-    var bankClerk = BankClerk()
+    private var bankClerk = BankClerk()
 }
 
 extension Bank {

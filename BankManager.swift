@@ -37,7 +37,7 @@ extension BankManager {
         bankManager.bank.notifyResult(totalCustomer: total, totalTime: time)
     }
     
-    mutating func formWaitingLine(_ totalcustomer: Int) -> Queue<Int>{
+    mutating func formWaitingLine(from totalcustomer: Int) -> Queue<Int>{
         return bank.makeWaitingLine(totalcustomer)
     }
 
