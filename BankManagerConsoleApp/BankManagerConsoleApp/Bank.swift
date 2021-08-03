@@ -10,19 +10,20 @@ import Foundation
 struct Bank {
 //    var clerkNumber: Int = 1
     var bankClerk = BankClerk()
+    // customerQueue를 바깥에 만들어놔야 나중에 추가할 때 새로운 Queue를 만들지 않을 수 있을 것 같습니다!
+    var customerQueue = Queue<Int>()
+    var customer = Customer()
 }
 
 extension Bank {
-    mutating func makeWaitingLine(_ totalCustomer: Int) -> Queue<Int> {
-        var waitingLine = Queue<Int>()
-        for i in 1...totalCustomer {
-            waitingLine.enqueue(i)
+    mutating func makeWaitingLine() {
+        for customerNumber in 1...customer.totalCustomer {
+            customerQueue.enqueue(customerNumber)
         }
-        return waitingLine
     }
     
     mutating func open(totalCustomer: Int) {
-        var waitingLine = self.makeWaitingLine(totalCustomer)
+        var waitingLine = self.makeWaitingLine()
         for _ in 1...totalCustomer {
             self.bankClerk.work(withcustomer: waitingLine.dequeue())
         }
