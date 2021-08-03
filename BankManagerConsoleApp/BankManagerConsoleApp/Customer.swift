@@ -8,15 +8,21 @@
 import Foundation
 
 struct Customer {
-    let totalNumber: Int
+    //    let tagNumber: Int
+    //
+    //    init(tagNumber: Int) {
+    //        self.tagNumber = tagNumber
+    //    }
+    
+    var totalCustomer: Int
     
     init() {
         let range = (10...30)
-        let totalNumber = Int.random(in: range)
-        self.totalNumber = totalNumber
+        let totalCustomer = Int.random(in: range)
+        self.totalCustomer = totalCustomer
     }
-
-    init(totalNumber: Int) {
-        self.totalNumber = totalNumber
+    
+    init(totalCustomer: Int) {
+        self.totalCustomer = totalCustomer
     }
 }

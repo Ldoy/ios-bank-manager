@@ -8,4 +8,16 @@ import Foundation
 
 var bankManager = BankManager()
 
-bankManager.start()
+func main() {
+    var flag = true
+    while flag == true {
+        if bankManager.takeAnswer() == "1" {
+//            bankManager.
+//            bankManager.bank.open(totalCustomer: <#T##Int#>)
+        } else {
+            flag = false
+        }
+    }
+}
+
+main()

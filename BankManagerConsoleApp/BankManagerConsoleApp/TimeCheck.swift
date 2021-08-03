@@ -7,7 +7,7 @@
 
 import Foundation
 
-public func timeCheck(_ block: () -> Void) -> String {
+public func timeCheck(_ block: () -> ()) -> String {
     let start = Date()
     block()
     let totalTime = Date().timeIntervalSince(start)
