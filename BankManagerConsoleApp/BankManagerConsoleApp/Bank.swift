@@ -22,13 +22,14 @@ extension Bank {
         }
     }
     
-    mutating func open(totalCustomer: Int) {
-        var waitingLine = self.makeWaitingLine()
-        for _ in 1...totalCustomer {
-            self.bankClerk.work(withcustomer: waitingLine.dequeue())
+    mutating func open() {
+        var customerInCharge =  customerQueue.dequeue()
+        for _ in 1...customer.totalCustomer {
+            self.bankClerk.work(withcustomer: customerInCharge)
         }
     }
 
+    // open 메소드가 있으니 close라고 하는 것이 더욱 가독성 측면으로 좋지 않을까 생각해 수정해보았습니다.
     mutating func notifyClosing(totalCustomer: Int?, totalTime: String) {
         print("업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(totalCustomer)명이며, 총 업무시간은 \(totalTime)초입니다.")
     }
