@@ -8,12 +8,6 @@
 import Foundation
 
 struct Customer {
-    //    let tagNumber: Int
-    //
-    //    init(tagNumber: Int) {
-    //        self.tagNumber = tagNumber
-    //    }
-    
     var totalCustomer: Int
     
     init() {

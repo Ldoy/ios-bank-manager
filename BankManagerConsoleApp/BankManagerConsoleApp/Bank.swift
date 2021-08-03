@@ -8,7 +8,6 @@
 import Foundation
 
 struct Bank {
-//    var clerkNumber: Int = 1
     var bankClerk = BankClerk()
 }
 
@@ -21,18 +20,18 @@ extension Bank {
         return waitingLine
     }
     
-    mutating func open(totalCustomer: inout Queue<Int>) {
-//        guard let customer = waitingLine.dequeue() else { return }
-//        for _ in 1...totalCustome {
-//            self.bankClerk.work(with: customer)
-//        }
-        
+    mutating func work(totalCustomer: inout Queue<Int>) {
         while totalCustomer.isEmpty() == false {
             bankClerk.work(with: totalCustomer.dequeue())
         }
     }
 
-    mutating func notifyResult(totalCustomer: Int?, totalTime: String) {
-        print("업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(totalCustomer)명이며, 총 업무시간은 \(totalTime)초입니다.")
+    mutating func notifyResult(totalCustomer: Int, totalTime: String) {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        numberFormatter.roundingMode = .halfUp
+        let convertedTotalTime = numberFormatter.string(for: Double(totalTime)) ?? "0"
+        print("업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(totalCustomer)명이며, 총 업무시간은 \(convertedTotalTime)초입니다.")
     }
 }
