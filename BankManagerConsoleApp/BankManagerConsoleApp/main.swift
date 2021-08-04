@@ -10,11 +10,20 @@ var bankManager = BankManager()
 
 func main() {
     var flag = true
+    var bank = Bank()
+    var queue = bank.makeWaitingLine(from: 10)
+    let group = DispatchGroup()
+    let runLoanQueue = DispatchQueue.init(label: "loan")
+    let runSaveQueue = DispatchQueue.global()
+    let mainQueue = DispatchQueue.main
+    var totalTime = ""
+    var totalCustomer = 0
+    let userInput = bankManager.takeAnswer()
+    
     while flag {
-        let userInput = bankManager.takeAnswer()
         switch userInput {
         case BankMenu.open:
-            bankManager.start()
+            bankManager.start(&queue, group: group, runSaveQueue: runSaveQueue, runLoanQueue: runLoanQueue)
         case BankMenu.exit:
             bankManager.end()
             flag = false
@@ -22,6 +31,10 @@ func main() {
             flag = true
         }
     }
+
+//    group.notify(queue: mainQueue) {
+//        bankManager.showWorkResult(totalCustomer, totalTime)
+//    }
 }
 
 main()

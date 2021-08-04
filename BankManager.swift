@@ -16,13 +16,10 @@ struct BankManager {
 }
 
 extension BankManager {
-    mutating func start() {
-        let totalCustomer = gatherCustomers()
-        formWaitingLine(from: totalCustomer)
-        let totalTime = checkWorkingTime {
-            askWork()
-        }
-        showWorkResult(totalCustomer, totalTime)
+    mutating func start(_ queue: inout Queue<Int>, group: DispatchGroup, runSaveQueue: DispatchQueue, runLoanQueue: DispatchQueue) {
+//        let totalCustomer = gatherCustomers()
+//       formWaitingLine(from: totalCustomer)
+        askWork(&queue, group: group, runSaveQueue: runSaveQueue, runLoanQueue: runLoanQueue)
     }
     
     func end() {
@@ -46,15 +43,16 @@ extension BankManager {
         return totalNumber
     }
     
-    private mutating func formWaitingLine(from totalCustomer: Int) {
-        bank.makeWaitingLine(from: totalCustomer)
+//    mutating func formWaitingLine(from totalCustomer: Int) -> Queue<Int>{
+//        return bank.makeWaitingLine(from: totalCustomer)
+//    }
+    
+    private mutating func askWork(_ queue: inout Queue<Int>, group: DispatchGroup, runSaveQueue: DispatchQueue, runLoanQueue: DispatchQueue) {
+//        bank.letClerkWork()
+        bank.letClerkWork(&queue, group: group, runSaveQueue: runSaveQueue, runLoanQueue: runLoanQueue)
     }
     
-    private mutating func askWork() {
-        bank.letClerkWork()
-    }
-    
-    private mutating func showWorkResult(_ total: Int, _ time: String) {
+    mutating func showWorkResult(_ total: Int, _ time: String) {
         bank.notifyClosing(totalCustomer: total, totalTime: time)
     }
     

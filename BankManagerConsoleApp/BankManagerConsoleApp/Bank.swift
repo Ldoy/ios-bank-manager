@@ -9,22 +9,28 @@ import Foundation
 
 struct Bank {
     private var bankClerk = BankClerk()
-    private var waitingLine = Queue<Int>()
+//    private var waitingLine = Queue<Int>()
 }
 
 extension Bank {
-    mutating func makeWaitingLine(from totalCustomerNumber: Int) {
+    mutating func makeWaitingLine(from totalCustomerNumber: Int) -> Queue<Int> {
+        var queue = Queue<Int>()
         for i in 1...totalCustomerNumber {
-            waitingLine.enqueue(i)
+            queue.enqueue(i)
         }
+        return queue
     }
     
-    mutating func letClerkWork() {
-        while waitingLine.isEmpty() == false {
-            let currentCustomer = waitingLine.peek()
-            waitingLine.dequeue()
-            bankClerk.work(for: currentCustomer)
-        }
+    mutating func giveCustomer(_ queue: inout Queue<Int>) -> Int? {
+        defer { queue.dequeue() }
+        return queue.peek()
+    }
+    
+    mutating func letClerkWork(_ queue: inout Queue<Int>, group: DispatchGroup, runSaveQueue: DispatchQueue, runLoanQueue: DispatchQueue) {
+            guard let customerTiketNumber = giveCustomer(&queue) else { return }
+            let currentCustomer = Customer(ticketNumber: customerTiketNumber)
+//            bankClerk.work(for: currentCustomer)
+        bankClerk.work2(for: currentCustomer, group: group, runLoanQueue: runLoanQueue, runSaveQueue: runSaveQueue)
     }
     
     mutating func notifyClosing(totalCustomer: Int, totalTime: String) {

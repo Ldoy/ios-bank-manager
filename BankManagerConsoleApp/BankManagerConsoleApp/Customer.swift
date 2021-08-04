@@ -9,5 +9,15 @@ import Foundation
 
 struct Customer {
     var tiketNumber: Int
-    var business: String
+    var business: String?
+    
+    enum Business: String, CaseIterable {
+        case loan
+        case save
+    }
+    
+    init(ticketNumber: Int) {
+        self.business = Business.allCases.randomElement()?.rawValue
+        self.tiketNumber = ticketNumber
+    }
 }
