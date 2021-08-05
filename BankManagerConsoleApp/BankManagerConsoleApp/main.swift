@@ -29,6 +29,8 @@ func main() {
         case "1":
             start()
             main()
+        case "2":
+            main()
         default:
             flag = false
         }
