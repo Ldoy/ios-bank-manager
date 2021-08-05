@@ -6,8 +6,17 @@
 //
 
 import Foundation
+enum Business: String, CaseIterable {
+    case 대출, 예금
+    case etc
+}
 
 struct Customer {
     var tiketNumber: Int
-    var business: String
+    var business: Business?
+    
+    init(ticketNumber: Int) {
+        self.tiketNumber = ticketNumber
+        self.business = Business.allCases.randomElement()
+    }
 }

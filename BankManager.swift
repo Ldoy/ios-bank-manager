@@ -12,19 +12,19 @@ enum BankMenu {
 }
 
 struct BankManager {
-    private var bank = Bank()
+//    private var bank = Bank()
 }
 
 extension BankManager {
-    mutating func start() {
-        let totalCustomer = gatherCustomers()
-        formWaitingLine(from: totalCustomer)
-        let totalTime = checkWorkingTime {
-            askWork()
-        }
-        showWorkResult(totalCustomer, totalTime)
-    }
-    
+//    mutating func start() {
+//        let totalCustomer = gatherCustomers()
+//        formWaitingLine(from: totalCustomer)
+//        let totalTime = checkWorkingTime {
+//            askWork()
+//        }
+//        showWorkResult(totalCustomer, totalTime)
+//    }
+//
     func end() {
         return
     }
@@ -40,23 +40,23 @@ extension BankManager {
         return input
     }
     
-    private func gatherCustomers() -> Int {
+    func gatherCustomers() -> Int {
         let range = (10...30)
         let totalNumber = Int.random(in: range)
         return totalNumber
     }
     
-    private mutating func formWaitingLine(from totalCustomer: Int) {
-        bank.makeWaitingLine(from: totalCustomer)
-    }
+//    private mutating func formWaitingLine(from totalCustomer: Int) {
+//        bank.makeWaitingLine(from: totalCustomer)
+//    }
     
-    private mutating func askWork() {
-        bank.letClerkWork()
-    }
-    
-    private mutating func showWorkResult(_ total: Int, _ time: String) {
-        bank.notifyClosing(totalCustomer: total, totalTime: time)
-    }
+//    private mutating func askWork() {
+//        bank.letClerkWork()
+//    }
+//
+//    private mutating func showWorkResult(_ total: Int, _ time: String) {
+//        bank.notifyClosing(totalCustomer: total, totalTime: time)
+//    }
     
     private func checkWorkingTime(_ block: () -> ()) -> String {
         let start = Date()
