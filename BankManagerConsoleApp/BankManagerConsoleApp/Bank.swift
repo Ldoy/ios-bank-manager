@@ -7,27 +7,59 @@
 
 import Foundation
 
-struct Bank {
+class Bank {
     private var bankClerk = BankClerk()
-    private var waitingLine = Queue<Int>()
+    private var waitingLine = Queue<Customer>()
 }
 
 extension Bank {
-    mutating func makeWaitingLine(from totalCustomerNumber: Int) {
+    func makeWaitingLine(from totalCustomerNumber: Int) {
         for i in 1...totalCustomerNumber {
-            waitingLine.enqueue(i)
+            waitingLine.enqueue(Customer(ticketNumber: i))
         }
     }
     
-    mutating func letClerkWork() {
+    func letClerkWork() {
+        let semaphore = DispatchSemaphore(value: 2)
+        
         while waitingLine.isEmpty() == false {
-            let currentCustomer = waitingLine.peek()
+            guard let currentCustomer = waitingLine.peek() else {
+                return
+            }
             waitingLine.dequeue()
-            bankClerk.work(for: currentCustomer)
+            
+            switch currentCustomer.business {
+            case "대출":
+                let loanQueue = DispatchQueue(label: "대출업무")
+                loanQueue.async {
+                    self.bankClerk.handleLoan(for: currentCustomer.ticketNumber)
+                }
+            case "예금":
+                semaphore.wait()
+                DispatchQueue.global().async {
+                    self.bankClerk.handleDeposit(for: currentCustomer.ticketNumber)
+                    semaphore.signal()
+                }
+            default:
+                return
+            }
+            
+//            if currentCustomer.business == "대출" {
+//                let loanQueue = DispatchQueue(label: "대출업무")
+//                loanQueue.async {
+//                    self.bankClerk.handleLoan(for: currentCustomer.ticketNumber)
+//                }
+//            } else if currentCustomer.business == "예금" {
+//                semaphore.wait()
+//                DispatchQueue.global().async {
+//                    self.bankClerk.handleDeposit(for: currentCustomer.ticketNumber)
+//                    semaphore.signal()
+//                }
+//            }
         }
     }
     
-    mutating func notifyClosing(totalCustomer: Int, totalTime: String) {
+    func notifyClosing(totalCustomer: Int, totalTime: String) {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 2

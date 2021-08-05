@@ -8,6 +8,20 @@
 import Foundation
 
 struct Customer {
-    var tiketNumber: Int
+    enum BankingBusiness: String, CaseIterable {
+        case loan = "대출"
+        case deposit = "예금"
+        
+        var task: String {
+            self.rawValue
+        }
+    }
+    
+    var ticketNumber: Int
     var business: String
+    
+    init(ticketNumber: Int) {
+        self.ticketNumber = ticketNumber
+        business = BankingBusiness.allCases.randomElement()!.task
+    }
 }
