@@ -8,7 +8,6 @@
 import Foundation
 
 struct Customer {
-    //MARK: Properties
     var ticketNumber: Int
     var business: String?
     
